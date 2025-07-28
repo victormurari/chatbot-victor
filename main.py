@@ -1,9 +1,7 @@
 import os
 import streamlit as st
 from openai import OpenAI
-from openai.error import RateLimitError  # Importa o erro correto
 
-# Inicializa o cliente da OpenAI com a chave salva em st.secrets
 client = OpenAI(api_key=st.secrets["OPENAI_API_KEY"])
 
 def carregar_textos_txt(pasta):
@@ -40,5 +38,8 @@ if pergunta:
             temperature=0.7,
         )
         st.write(resposta.choices[0].message.content)
-    except RateLimitError:
-        st.error("Limite de chamadas da API atingido. Por favor, tente novamente mais tarde.")
+    except Exception as e:
+        if "RateLimitError" in str(e):
+            st.error("Limite de chamadas da API atingido. Por favor, tente novamente mais tarde.")
+        else:
+            st.error(f"Erro inesperado: {e}")
