@@ -38,10 +38,10 @@ def load_txt_files(folder):
                 st.warning(f"Could not read file {file_name}: {e}")
     return "\n\n".join(texts)
 
-# Load base text from the "documents" folder
-# Make sure you have a folder named 'documents' at the same level as your script
+# Load base text from the "documentos" folder
+# Make sure you have a folder named 'documentos' at the same level as your script
 # and that it contains .txt files with Victor Murari's information.
-base_text = load_txt_files("documents")
+base_text = load_txt_files("documentos") # Changed from "documents" to "documentos"
 
 # Streamlit page configurations
 st.set_page_config(page_title="Chat with Victor Murari")
